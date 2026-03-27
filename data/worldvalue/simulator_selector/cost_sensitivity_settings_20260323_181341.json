@@ -1,0 +1,67 @@
+{
+  "lambda_values": [
+    0.0005,
+    0.001,
+    0.002
+  ],
+  "cost_profiles": {
+    "compressed": {
+      "Uniform": 0.9,
+      "Llama": 1.0,
+      "Qwen3": 1.05,
+      "GPT5mini": 1.1,
+      "GPT4o": 1.2
+    },
+    "tiered_mild": {
+      "Uniform": 0.25,
+      "Llama": 0.5,
+      "GPT5mini": 0.75,
+      "Qwen3": 1.0,
+      "GPT4o": 1.25
+    },
+    "tiered_steep": {
+      "Uniform": 0.25,
+      "Llama": 0.75,
+      "GPT5mini": 1.5,
+      "Qwen3": 2.5,
+      "GPT4o": 4.0
+    },
+    "frontier_premium": {
+      "Uniform": 0.15,
+      "Llama": 0.4,
+      "Qwen3": 0.65,
+      "GPT5mini": 1.6,
+      "GPT4o": 5.5
+    },
+    "open_weighted": {
+      "Uniform": 0.35,
+      "Llama": 0.45,
+      "Qwen3": 0.55,
+      "GPT5mini": 1.8,
+      "GPT4o": 3.6
+    },
+    "uniform_ultracheap": {
+      "Uniform": 0.05,
+      "Llama": 0.85,
+      "Qwen3": 1.1,
+      "GPT5mini": 1.45,
+      "GPT4o": 1.9
+    }
+  },
+  "alpha": 0.04999999999999999,
+  "profile_set": "diverse",
+  "methods": {
+    "ridge_no_conformal": {
+      "run_conformal": false,
+      "conformal_mode": "none",
+      "model_kind": "ridge",
+      "decision_score_col": "pred"
+    },
+    "ridge_exact_localized": {
+      "run_conformal": true,
+      "conformal_mode": "exact_localized",
+      "model_kind": "ridge",
+      "decision_score_col": "upper"
+    }
+  }
+}

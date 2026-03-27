@@ -1,0 +1,38 @@
+{
+  "lambda_values": [
+    0.0005,
+    0.001,
+    0.002
+  ],
+  "cost_profiles": {
+    "tiered_mild": {
+      "Uniform": 0.25,
+      "Llama": 0.5,
+      "GPT5mini": 0.75,
+      "Qwen3": 1.0,
+      "GPT4o": 1.25
+    },
+    "tiered_steep": {
+      "Uniform": 0.25,
+      "Llama": 0.75,
+      "GPT5mini": 1.5,
+      "Qwen3": 2.5,
+      "GPT4o": 4.0
+    }
+  },
+  "alpha": 0.04999999999999999,
+  "methods": {
+    "ridge_no_conformal": {
+      "run_conformal": false,
+      "conformal_mode": "none",
+      "model_kind": "ridge",
+      "decision_score_col": "pred"
+    },
+    "ridge_exact_localized": {
+      "run_conformal": true,
+      "conformal_mode": "exact_localized",
+      "model_kind": "ridge",
+      "decision_score_col": "upper"
+    }
+  }
+}
