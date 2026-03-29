@@ -17,7 +17,7 @@ This folder packages the notebooks and archived figures needed to reproduce the 
 - `wvs_notebook_helpers.py`: shared helpers for retained-question loading, filtering, and pickle compatibility.
 - `wvs_data_preparation.py`: local preprocessing helpers used by the cleaning notebook.
 - `simfidelity_utils.py`: local copy of the quantile utility module used by the quantile notebook.
-- `figures/`: archived PNG copies of the main paper figures and a figure manifest.
+- `figures/`: archived PNG copies of the main paper figures plus the benchmark comparison figures, and a figure manifest.
 - `../datasets/worldvalue_data.zip`: source archive for the WorldValue bundle-local data tree.
 
 ## How To Use It
@@ -35,7 +35,7 @@ This folder packages the notebooks and archived figures needed to reproduce the 
 8. Run `WV_quantile_embedding_benchmark.ipynb` if you want the additional predictive-benchmark analysis. That notebook is intended to compare the existing calibrated curves with two empirical plug-in references:
    `plugin_X = f(X)` using question semantics and metadata alone, and
    `plugin_XQ = f(X, qhat)` using the same question features plus the simulator estimate.
-   It writes its generated CSV summaries and comparison figures to `worldvalue_quantile/output_embedding_benchmark/` when executed.
+   It writes its generated CSV summaries to `worldvalue_quantile/output_embedding_benchmark/` and also archives readable comparison PNGs to `worldvalue_quantile/figures/` when executed.
 
 ## Required Data And Inputs
 
@@ -63,7 +63,7 @@ The data-cleaning notebook checks these extracted paths explicitly and raises an
 
 ## Figure Archive
 
-The `figures/` directory stores PNG copies of the paper figures so the final plots can be inspected without rerunning the expensive cells, and the notebook now saves archived figures directly there instead of the repo root. See `figures/README.md` for the figure-to-notebook mapping.
+The `figures/` directory stores PNG copies of both the paper figures and the benchmark comparison figures so the final plots can be inspected without rerunning the expensive cells. See `figures/README.md` for the figure-to-notebook mapping.
 
 ## Additional Benchmark Notebook
 
@@ -73,6 +73,7 @@ The `figures/` directory stores PNG copies of the paper figures so the final plo
 - builds question representations from local survey text, answer options, and metadata
 - predicts the human-side target `p` with both question-only and simulator-assisted models
 - computes raw empirical quantile curves for the plug-in losses and compares them to the calibrated curves
-- emits diagnostic CSVs and overlay figures under `output_embedding_benchmark/`
+- emits diagnostic CSVs under `output_embedding_benchmark/`
+- archives the main benchmark comparison PNGs under `figures/` with stable, human-readable filenames
 
 The generated `output_embedding_benchmark/` directory is treated as run output rather than source, so it is expected to be recreated locally when the notebook is executed.
