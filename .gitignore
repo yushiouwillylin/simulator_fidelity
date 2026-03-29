@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+worldvalue_quantile/__pycache__/
+worldvalue_quantile/output_embedding_benchmark/

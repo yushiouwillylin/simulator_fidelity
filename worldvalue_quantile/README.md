@@ -13,6 +13,7 @@ This folder packages the notebooks and archived figures needed to reproduce the 
 - `WV_datacleaning.ipynb`: builds cleaned human-response artifacts, prompt inputs, and the uniform baseline.
 - `WV_llmcalls.ipynb`: merges raw LLM output shards and converts raw responses into numeric artifacts. The default published path does not make API calls.
 - `WV_quantile_construction.ipynb`: reproduces the quantile analyses and links each main plotting block to the corresponding paper figure.
+- `WV_quantile_embedding_benchmark.ipynb`: adds a predictive benchmark layer on top of the calibrated WorldValue quantile pipeline. It builds question-level features from survey text and metadata, predicts the human-side target with question-only and simulator-assisted models, and overlays those predictive plug-in curves against the calibrated curves from `WV_quantile_construction.ipynb`.
 - `wvs_notebook_helpers.py`: shared helpers for retained-question loading, filtering, and pickle compatibility.
 - `wvs_data_preparation.py`: local preprocessing helpers used by the cleaning notebook.
 - `simfidelity_utils.py`: local copy of the quantile utility module used by the quantile notebook.
@@ -31,6 +32,10 @@ This folder packages the notebooks and archived figures needed to reproduce the 
 5. Run `WV_llmcalls.ipynb` to merge raw shard files and convert synthetic answers into numeric artifacts.
 6. If you want to experiment with fresh provider calls, set `RUN_GENERATION = True` in `WV_llmcalls.ipynb`, provide credentials in `.env.local`, and install `../requirements-optional-llm.txt`.
 7. Run `WV_quantile_construction.ipynb` to reproduce the paper plots. The notebook includes links from each major plotting block to the final figure used in the manuscript.
+8. Run `WV_quantile_embedding_benchmark.ipynb` if you want the additional predictive-benchmark analysis. That notebook is intended to compare the existing calibrated curves with two empirical plug-in references:
+   `plugin_X = f(X)` using question semantics and metadata alone, and
+   `plugin_XQ = f(X, qhat)` using the same question features plus the simulator estimate.
+   It writes its generated CSV summaries and comparison figures to `worldvalue_quantile/output_embedding_benchmark/` when executed.
 
 ## Required Data And Inputs
 
@@ -59,3 +64,15 @@ The data-cleaning notebook checks these extracted paths explicitly and raises an
 ## Figure Archive
 
 The `figures/` directory stores PNG copies of the paper figures so the final plots can be inspected without rerunning the expensive cells, and the notebook now saves archived figures directly there instead of the repo root. See `figures/README.md` for the figure-to-notebook mapping.
+
+## Additional Benchmark Notebook
+
+`WV_quantile_embedding_benchmark.ipynb` is not part of the original paper figure set. Its purpose is to evaluate how the calibrated WorldValue discrepancy curves compare with predictive plug-in baselines fit on real survey question data. Concretely, it:
+
+- reuses the retained question set, simulator bundle, and calibrated `qhat` pipeline from `WV_quantile_construction.ipynb`
+- builds question representations from local survey text, answer options, and metadata
+- predicts the human-side target `p` with both question-only and simulator-assisted models
+- computes raw empirical quantile curves for the plug-in losses and compares them to the calibrated curves
+- emits diagnostic CSVs and overlay figures under `output_embedding_benchmark/`
+
+The generated `output_embedding_benchmark/` directory is treated as run output rather than source, so it is expected to be recreated locally when the notebook is executed.
