@@ -9,8 +9,8 @@ The same paper logic is used here, just with a different domain:
 - scenario unit: `psi = h={hour}|w={is_weekend}|tq={temp_q}`
 - real-side parameter `p_j`: variance of the future 30-minute room temperature within scenario `psi_j`
 - simulator-side parameter `q_j`: variance induced by emulator draws within the same scenario
-- uncertainty calibration: scenario-specific `gamma_j = 1 - n_j^{-1/3}`
-- discrepancy target: upper and lower pseudo-discrepancies between the simulator variance and a confidence interval for the real-side variance
+- uncertainty coverage: scenario-specific `gamma_j = 1 - n_j^{-1/3}`
+- discrepancy target: pseudo-discrepancies between the simulator variance and a confidence interval for the real-side variance
 - final summary object: the adjusted upper quantile curve built from the scenario-level discrepancies
 
 So the UMAR experiment should be read as "apply the calibrated quantile-curve framework to a short-horizon thermal emulator," not as "pick the best predictor by RMSE alone."
