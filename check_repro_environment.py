@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parent
 CORE_PACKAGES = {
     "numpy": "numpy",
     "pandas": "pandas",
+    "pyarrow": "pyarrow",
     "matplotlib": "matplotlib",
     "seaborn": "seaborn",
     "scipy": "scipy",
@@ -104,13 +105,33 @@ def check_opinionqa_inputs() -> list[str]:
     return missing
 
 
+
+def check_umar_inputs() -> list[str]:
+    required = [
+        ROOT / "data" / "umar" / "metadata" / "umar_metadata.csv",
+        ROOT / "data" / "umar" / "raw" / "umar_2019-07-01_2020-07-01_wide_descId.csv",
+        ROOT / "data" / "umar" / "raw" / "umar_2020-07-01_2021-07-01_wide_descId.csv",
+        ROOT / "data" / "umar" / "raw" / "umar_2021-07-01_2022-07-01_wide_descId.csv",
+        ROOT / "data" / "umar" / "raw" / "umar_2022-07-01_2023-07-01_wide_descId.csv",
+    ]
+    missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
+    _print_header("UMAR Data")
+    if missing:
+        print("Missing UMAR inputs:")
+        for item in missing:
+            print(f"  - {item}")
+        print("Copy the UMAR CSVs and metadata into data/umar/ before running the UMAR notebooks.")
+    else:
+        print("UMAR reproduction inputs are present.")
+    return missing
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Preflight check for running the paper reproduction on a fresh VM, Colab, or local machine."
     )
     parser.add_argument(
         "--dataset",
-        choices=["all", "worldvalue", "eedi", "opinionqa"],
+        choices=["all", "worldvalue", "eedi", "opinionqa", "umar"],
         default="all",
         help="Which reproduction workflow to validate.",
     )
@@ -131,6 +152,8 @@ def main() -> int:
         failures.append("eedi")
     if args.dataset in {"all", "opinionqa"} and check_opinionqa_inputs():
         failures.append("opinionqa")
+    if args.dataset in {"all", "umar"} and check_umar_inputs():
+        failures.append("umar")
 
     _print_header("Next Step")
     if failures:

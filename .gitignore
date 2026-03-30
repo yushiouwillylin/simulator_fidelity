@@ -5,3 +5,6 @@ __pycache__/
 
 worldvalue_quantile/__pycache__/
 worldvalue_quantile/output_embedding_benchmark/
+
+umar_quantile/output/
+umar_quantile/__pycache__/

@@ -6,13 +6,15 @@ This directory is a self-contained reproduction bundle for the paper figures. Th
 
 - `worldvalue_quantile/`: WorldValueBench preprocessing, simulator post-processing, and quantile-plot reproduction.
 - `eedi_opinionqa_quantile/`: EEDI and OpinionQA quantile-plot reproduction from prepared dataset artifacts.
+- `umar_quantile/`: UMAR building-control quantile reproduction for the short-horizon room-temperature emulator experiment, phrased in the same calibrated quantile-curve language used elsewhere in the paper.
 - `datasets/`: zip archives plus an unpack script for the underlying datasets used by the reproduction notebooks.
-- `data/`: extracted bundle-local datasets used by the notebooks after unpacking.
+- `data/`: extracted bundle-local datasets used by the notebooks after unpacking, plus the repo-local UMAR building dataset tree under `data/umar/`.
 
 ## Canonical Output Locations
 
 - WorldValue figures are archived in `worldvalue_quantile/figures/`.
 - EEDI and OpinionQA figures are archived in `eedi_opinionqa_quantile/figures/`.
+- UMAR figures are archived in `umar_quantile/figures/`.
 - Rebuilt WorldValue derived datasets stay under `data/worldvalue/`.
 
 ## Typical Use
@@ -27,6 +29,8 @@ This directory is a self-contained reproduction bundle for the paper figures. Th
 4. Open the notebook for the dataset you want to reproduce.
 5. Run the notebook from top to bottom to regenerate the archived figures shown in each folder.
 
+For UMAR, run `umar_quantile/umar_ml_simulator_construction.ipynb` first and then `umar_quantile/umar_quantile_inference.ipynb`.
+
 ## Fresh VM Or Colab
 
 - The bundle is designed to run in an isolated VM, Codespace, or Colab runtime without machine-specific paths.
@@ -40,3 +44,4 @@ Each notebook auto-detects the reproduction root before loading inputs. The expe
 - `data/worldvalue/` and the minimal `data/worldvaluesbench/` subset for WorldValueBench.
 - `data/eedi/` for EEDI.
 - `data/opinionqa/` for OpinionQA.
+- `data/umar/` for the UMAR building-control reproduction.

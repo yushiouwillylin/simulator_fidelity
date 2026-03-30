@@ -36,3 +36,8 @@ The notebooks expect these folders to be restored inside the reproduction bundle
 - `opinionqa_data.zip` extracts to `data/opinionqa/`
 
 For the minimal WorldValue restore, the largest remaining file is `data/worldvaluesbench/F00011356-WVS_Cross-National_Wave_7_csv_v6_0.zip`. This is already the compressed raw WVS archive; the minimal layout intentionally keeps it zipped rather than expanding it to a much larger CSV tree.
+
+
+## UMAR Data
+
+The UMAR building-control reproduction uses repo-local CSV inputs under `data/umar/` rather than a zip archive restored by `unpack_reproduction_data.py`.
