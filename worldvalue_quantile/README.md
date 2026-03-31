@@ -68,7 +68,7 @@ The `figures/` directory stores PNG copies of both the paper figures and the ben
 
 - reuses the retained question set, simulator bundle, and calibrated `qhat` pipeline from `WV_quantile_construction.ipynb`
 - builds question representations from local survey text, answer options, and metadata
-- cross-fits a question-only predictor on held-in folds of the strongest available human target
+- cross-fits a question-only predictor on held-in folds of the finite-sample human target used in the calibrated benchmark setting
 - stores the out-of-fold predictions as a baseline simulator-side output `q_tilde`
 - feeds that learned baseline through the same confidence-set pseudo-discrepancy and calibrated quantile-curve code used for the LLM simulators
 - emits diagnostic CSVs under `output_embedding_benchmark/`

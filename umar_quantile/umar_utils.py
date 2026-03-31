@@ -17,9 +17,9 @@ ArrayLike = Union[np.ndarray, pd.Series, Sequence[float]]
 
 
 MODEL_DISPLAY_NAMES = {
-    "DecisionTree": "Decision Tree (DT)",
+    "DecisionTree": "Decision Tree",
     "LinearModel": "Linear Regression",
-    "MLP": "Multilayer Perceptron (MLP / ANN)",
+    "MLP": "Multilayer Perceptron",
 }
 
 MODEL_LITERATURE_FAMILIES = {
@@ -31,7 +31,7 @@ MODEL_LITERATURE_FAMILIES = {
 MODEL_PAPER_ALIGNMENT = {
     "DecisionTree": "Included as a deliberately shallow decision-tree baseline rather than a tuned high-performing tree model.",
     "LinearModel": "Plain linear regression on the causal feature set, used as the simplest interpretable baseline.",
-    "MLP": "Used here as an ANN/MLP representative from the neural-network family discussed in the literature.",
+    "MLP": "Used here as a standard multilayer perceptron baseline from the neural-network family discussed in the literature.",
 }
 
 

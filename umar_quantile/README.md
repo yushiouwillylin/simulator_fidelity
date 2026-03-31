@@ -44,9 +44,9 @@ This folder intentionally fixes one concrete UMAR run so the reproduction is eas
 - target variable: next-step 30-minute mean room temperature `y_future`
 - artifact filter: remove rows where `room_temp_t`, `lag1`, `lag2`, or `y_future` exceeds `30C`
 - simulator budget: `k_j = 200` draws per scenario
-- model families: linear regression, a shallow decision tree, and an MLP emulator
+- model families: linear regression, a shallow decision tree, and a multilayer perceptron emulator
 
-These choices are meant to keep the folder aligned with the paper's fidelity-analysis goal: compare simulator families on calibrated scenario-level behavior, not maximize task-specific predictive performance with heavy tuning.
+These choices are meant to keep the folder aligned with the paper's fidelity-analysis goal: compare standard simulator families on calibrated scenario-level behavior, not maximize task-specific predictive performance with heavy tuning.
 
 ## Data Layout
 
