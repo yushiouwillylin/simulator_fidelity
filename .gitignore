@@ -1,7 +1,15 @@
 __pycache__/
 *.pyc
 *.pyo
+.DS_Store
 .ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+internal_rep_experiments/
+tmp/
 
 worldvalue_quantile/__pycache__/
 worldvalue_quantile/output_embedding_benchmark/
